@@ -20,35 +20,20 @@ public class Udemy {
 	public static void main(String args[]) throws MalformedURLException {
 		DesiredCapabilities cap = new DesiredCapabilities();
 		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel");
-		cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-		cap.setCapability(MobileCapabilityType.NO_RESET, false);
+		cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "android");
+
 		cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.udemy.android");
-		cap.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.udemy.android.activity.SplashActivity");
+		cap.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.udemy.android.CombinedDeepLinkActivity");
 		AndroidDriver<AndroidElement> driver = new AndroidDriver<AndroidElement>(
 				new URL("http://localhost:4723/wd/hub"), cap);
-		driver.findElement(MobileBy.id("com.udemy.android:id/signin_button")).click();
-		driver.findElement(MobileBy.AndroidUIAutomator("UiSelector().text(\"Sign in with email\")")).click();
-		driver.findElement(MobileBy.id("com.udemy.android:id/email_edit")).sendKeys("mullaimc@gmail.com");
-		driver.findElement(MobileBy.id("com.udemy.android:id/nextBtn")).click();
-		driver.findElement(MobileBy.id("com.udemy.android:id/password")).sendKeys("Mullai@1994");
-		driver.findElement(MobileBy.id("com.udemy.android:id/signin_button")).click();
-		driver.findElement(MobileBy.AccessibilityId("Account tab")).click();
-
-		Dimension d = driver.manage().window().getSize();
-		int width = d.width;
-		int height = d.height;
-		int x1 = width / 2;
-		int y1 = 4 * height / 2;
-		int x2 = width / 2;
-		int y2 = height / 2;
-
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		while (driver.findElements(MobileBy.id("com.udemy.android:id/sign_out")).size() == 0) {
-			driver.executeScript("moblie:shell", ImmutableMap.of("command", "input swipe" + x1 + y1 + x2 + y2));
-
-		}
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.findElement(MobileBy.id("com.udemy.android:id/sign_out")).click();
-		driver.findElement(MobileBy.id("android:id/button1")).click();
+		driver.findElement(MobileBy.AndroidUIAutomator("UiSelector().text(\"Sign in\")")).click();
+		driver.findElement(MobileBy.AndroidUIAutomator("UiSelector().text(\"New here? Create an account\")")).click();
+		driver.findElement(MobileBy.AndroidUIAutomator("UiSelector().text(\"Sign up with email\")")).click();
+		driver.findElement(MobileBy.AndroidUIAutomator("UiSelector().text(\"Name\")")).sendKeys("Mullai");
+		driver.findElement(MobileBy.AndroidUIAutomator("UiSelector().text(\"Email\")")).sendKeys("mullaimc@gmail.com");
+		driver.findElement(MobileBy.AndroidUIAutomator("UiSelector().text(\"Password (8+ characters)\")"))
+				.sendKeys("Mullai@1994");
+		driver.findElement(MobileBy.AndroidUIAutomator("UiSelector().text(\"Create account\")")).click();
 	}
 }

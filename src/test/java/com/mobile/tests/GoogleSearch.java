@@ -16,6 +16,11 @@ import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 
 public class GoogleSearch {
+	/**
+	 * Google search from native app
+	 * @param args
+	 * @throws MalformedURLException
+	 */
 	public static void main(String args[]) throws MalformedURLException {
 		DesiredCapabilities cap = new DesiredCapabilities();
 		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel");
@@ -26,7 +31,7 @@ public class GoogleSearch {
 				"org.chromium.chrome.browser.document.ChromeLauncherActivity");
 		AndroidDriver<AndroidElement> driver = new AndroidDriver<AndroidElement>(
 				new URL("http://localhost:4723/wd/hub"), cap);
-		driver.findElement(MobileBy.id("com.android.chrome:id/search_box_text")).sendKeys("Selenium");
+		driver.findElement(MobileBy.id("com.android.chrome:id/search_box_text")).sendKeys("Appium");
 		driver.longPressKey(new KeyEvent(AndroidKey.ENTER));
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
