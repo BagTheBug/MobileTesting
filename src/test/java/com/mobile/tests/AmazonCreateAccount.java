@@ -13,7 +13,7 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 
-public class Amazon {
+public class AmazonCreateAccount {
 	public static void main(String args[]) throws MalformedURLException {
 
 		String name = "My Name";

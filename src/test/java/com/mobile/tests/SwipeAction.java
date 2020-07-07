@@ -37,7 +37,7 @@ public class SwipeAction {
 		int width = d.width;
 		int height = d.height;
 		int x1 = width / 2;
-		int y1 = 4 * height / 2;
+		int y1 = 4 * height / 5;
 		int x2 = width / 2;
 		int y2 = height / 2;
 
